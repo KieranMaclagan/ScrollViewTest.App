@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ScrollViewTest"
+             x:Class="ScrollViewTest.ScrollViewPage"
+             x:DataType="local:ViewModel"
+             Title="{Binding Numbers.Count}">
+    <ContentPage.BindingContext>
+        <local:ViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Command="{Binding AddCommand}" />
+    </ContentPage.ToolbarItems>
+    <ScrollView>
+        <StackLayout BindableLayout.ItemsSource="{Binding Numbers}">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <VerticalStackLayout Padding="48">
+                        <Button Text="Push Me" Command="{Binding Source={RelativeSource AncestorType={x:Type local:ViewModel}}, Path=ButtonPressedCommand}" />
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
